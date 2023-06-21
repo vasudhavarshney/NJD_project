@@ -1,0 +1,24 @@
+<%- include('./includes/head.ejs') %>
+<link rel="stylesheet", href="static/css/navbar_style.css">
+<link rel="stylesheet", href="static/css/add_prod_form_style.css">
+</head>
+<body>
+    <%- include('./includes/navbar.ejs') %>
+    <div class="add_prod_form">
+        <form action="/admin/add_product" method ="POST">
+            <label for="name">Product Name:</label>
+            <input type="text" name ="name" id ="name" value="prod_name">
+            <label for="rating">Rating :</label>
+            <input type="text" name ="rating" id ="rating" value="5">
+            <label for="image">Product Image(URL):</label>
+            <input type="text" name ="image" id ="image" value="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422992/sub/goods_422992_sub14.jpg?width=494">
+            <label for="description">Product Description:</label>
+            <input type="text" name ="description" id ="description" value="product description ">
+            <label for="price">Price:</label>
+            <input type="text" name ="price" id ="price" value="500">
+            <button type ="submit">Add</button>
+        </form>
+    </div>
+
+
+</body>

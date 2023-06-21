@@ -1,0 +1,26 @@
+body{
+    margin: 0%;
+    padding: 0%;
+}
+.navbar-list{
+list-style-type: none;
+margin: 0%;
+padding: 0%;
+display: flex;
+background-color:chocolate;
+}
+.nav-list-item{
+   padding: 5px;
+   margin: 5px;
+}
+
+.nav-list-item a{
+    text-decoration-style: none;
+    text-decoration-line: none;
+    padding: inherit;
+    color: aliceblue;
+}
+.nav-list-item a:hover{
+    padding: 5px;
+    background-color: rgb(236, 171, 125)
+}

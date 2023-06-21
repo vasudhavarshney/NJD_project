@@ -1,0 +1,5 @@
+<form action="/shop/cart/?addData=add" method ="POST">
+    <input type="hidden" name ="id" value="<%= product.id %>">
+    <input type="hidden" name ="price" value="<%= product.price/qty %>">
+    <button type="submit"><%= btnTitle %></button>
+</form></div>

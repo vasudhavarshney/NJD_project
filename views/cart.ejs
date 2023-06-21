@@ -1,0 +1,51 @@
+<%- include('./includes/head.ejs') %>
+<link rel="stylesheet", href="static/css/navbar_style.css" />
+<link rel="stylesheet", href="static/css/shop_style.css" />
+<link rel="stylesheet", href="static/css/default_style.css" />
+<link rel="stylesheet", href="static/css/cart_style.css" />
+</head>
+<body>
+    <%- include('./includes/navbar.ejs') %>
+    <% if ( products.length>0 ) { %>
+        <div class="cart_head">
+            <div class="cart_title">Shopping Cart </div>
+            <div class="item_count_in_cart"><%= totalQty %> item in your cart </div>
+        </div>
+        <div class="cart_body">
+            <div class="cart_items">
+                <table>
+                  <tr>  
+                    <th class="prodcut_name">Product</th>
+                    <th class="product_price">Price</th>
+                    <th class="product_qty">Qty</th>
+                    
+                 </tr>
+                 <% products.forEach(currentItem => { %>
+                <tr>
+                    <td><%= currentItem.id %></td>
+                    <td><%= currentItem.price %></td>
+                    <td><ul class="qty_navigate">
+                        <li class="plus"><%- include('./includes/add_to_cart.ejs',{product:currentItem,btnTitle:"+",qty:currentItem.qty}) %> </li>
+                        <li class="count"><%= currentItem.qty %></li>
+                        <li class="minus"><%- include('./includes/remove_from_cart.ejs',{product:currentItem,btnTitle:"-"}) %></li>
+                    </ul></td>
+                 </tr>
+                 <% }); %> 
+                </table>
+            </div>
+            <div class="cart_subtotal">Subtotal:<br><span id="price"><b>Rs.<%= totalPrice %>/-<b></span></div>
+            <div class="cart_checkout"><button>CheckOut</button</div></div>
+    <%} else { %>
+        <div class="card">
+            <div class="card-body">
+                <h1>
+                    Empty Cart!!!
+                </h1>
+            </div>
+        </div>
+    <%}  %>
+         
+      
+        
+</body>
+</html>
