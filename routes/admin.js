@@ -7,6 +7,8 @@ const adminController = require("../controllers/adminController.js");
    
 //All Routes
 routes.get("/",adminController.getProdAdmin);
+routes.get("/:id",adminController.getEditProduct);
+routes.post("/edit_product",adminController.postEditProduct);
 routes.get("/add_product",adminController.getAdd_product);
 routes.post("/add_product",adminController.postAdd_product);
 routes.post("/delete_product",adminController.deleteProduct);

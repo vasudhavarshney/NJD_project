@@ -18,10 +18,7 @@
                             <input type="hidden" name ="id" value="<%= x._id %>">
                             <button>Delete</button>
                         </form>
-                        <form action="/admin" method ="POST">
-                            <input type="hidden" name ="id" value="<%= x.id %>">
-                            <button>Edit</button>
-                        </form>
+                        <div class="cart"><button onClick ='location.href="/admin/<%= x.id %>";' class="cart">Edit</button></div>
                     </div>
                 </div>
             <% }); %>

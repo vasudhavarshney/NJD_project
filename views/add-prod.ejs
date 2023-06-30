@@ -5,19 +5,37 @@
 <body>
     <%- include('./includes/navbar.ejs') %>
     <div class="add_prod_form">
-        <form action="/admin/add_product" method ="POST">
+    <% if(product === null) {%>
+        <form action="/admin/add_product" method ="POST">        
             <label for="name">Product Name:</label>
-            <input type="text" name ="name" id ="name" value="prod_name">
+            <input type="text" name ="name" id ="name" value="">
             <label for="rating">Rating :</label>
-            <input type="text" name ="rating" id ="rating" value="5">
+            <input type="text" name ="rating" id ="rating" value="">
             <label for="image">Product Image(URL):</label>
-            <input type="text" name ="image" id ="image" value="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422992/sub/goods_422992_sub14.jpg?width=494">
+            <input type="text" name ="image" id ="image" value="">
             <label for="description">Product Description:</label>
-            <input type="text" name ="description" id ="description" value="product description ">
+            <input type="text" name ="description" id ="description" value="">
             <label for="price">Price:</label>
-            <input type="text" name ="price" id ="price" value="500">
+            <input type="text" name ="price" id ="price" value="">
             <button type ="submit">Add</button>
         </form>
+    <%} else {%>
+        <form action="/admin/edit_product" method ="POST">
+            <label for="_id">Product Name:</label>
+            <input type="hidden" name ="id" id ="id" value="<%= product.id %>">            
+            <label for="name">Product Name:</label>
+            <input type="text" name ="name" id ="name" value="<%= product.name %>">
+            <label for="rating">Rating :</label>
+            <input type="text" name ="rating" id ="rating" value="<%= product.rating %>">
+            <label for="image">Product Image(URL):</label>
+            <input type="text" name ="image" id ="image" value="<%= product.image %>">
+            <label for="description">Product Description:</label>
+            <input type="text" name ="description" id ="description" value="<%= product.description %>">
+            <label for="price">Price:</label>
+            <input type="text" name ="price" id ="price" value="<%= product.price %>">
+            <button type ="submit">Edit</button>
+        </form>      
+    <%}%>
     </div>
 
 

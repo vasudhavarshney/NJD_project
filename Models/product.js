@@ -1,14 +1,16 @@
 const getDB = require('../util/database.js').getDB;
 const mongodb = require('mongodb');
 
+
 class product{
-    constructor(id,name,price,rating,description,imageUrl){
+    constructor(id,name,price,rating,description,imageUrl,UserId){
         this.id = id;
         this.name=name;
         this.price=price;
         this.description = description;
         this.rating = rating;
         this.image = imageUrl;
+        this.UserId = UserId
     }
 
     
@@ -45,6 +47,15 @@ class product{
         const db = getDB();
         return db.collection("product").findOne({id:id}).then(products =>{
             //console.log(products);
+            return products
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+    updateById(id){
+        const db = getDB();
+        return db.collection("product").updateOne({"id":id},{$set: {...this}}).then(products =>{
+            console.log(products,"updated!!!!!!!!!!!!!!");
             return products
         }).catch(err => {
             console.log(err);
