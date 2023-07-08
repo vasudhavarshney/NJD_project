@@ -26,7 +26,7 @@ class product{
     static deleteById(prod_id){
         const db = getDB();
         return db.collection("product").deleteOne({_id:new mongodb.ObjectId(prod_id)}).then(result =>{
-            console.log("Deleted")
+            //console.log("Deleted")
         }).catch(err => {
             console.log(err);
         })
@@ -55,7 +55,7 @@ class product{
     updateById(id){
         const db = getDB();
         return db.collection("product").updateOne({"id":id},{$set: {...this}}).then(products =>{
-            console.log(products,"updated!!!!!!!!!!!!!!");
+            //console.log(products,"updated!!!!!!!!!!!!!!");
             return products
         }).catch(err => {
             console.log(err);

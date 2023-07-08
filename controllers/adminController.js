@@ -13,7 +13,7 @@ module.exports.postAdd_product=(req,res,next)=>{
    const year = d.getFullYear();
    var buf=req.body;
    buf.id ="PROD"+year+random;
-   console.log(buf)
+   console.log("user at the time of add product:::::::::::;;--->",req.user)
    const product1 = new product(buf.id,buf.name,buf.price,buf.rating,buf.description,buf.image,req.user._id).save();
    res.status(200).redirect("/shop");
 };
@@ -33,8 +33,10 @@ module.exports.getProdAdmin=(req,res,next)=>{
 module.exports.deleteProduct =(req,res,next)=>{
    product.deleteById(req.body.id).then(result =>{
    res.status(200).redirect("/admin")
+   next();
    }).catch(err => {
        console.log(err);
+       next();
    })
 };
 
@@ -44,8 +46,10 @@ module.exports.getEditProduct =(req,res,next)=>{
     product.fetchById(req.params.id).then(product =>{
          console.log("edit_product:::------------>",product)
     res.status(200).render("add-prod",{"product":product} );
+    next();
     }).catch(err => {
         console.log(err);
+        next();
     })
  };
 
@@ -54,7 +58,6 @@ module.exports.getEditProduct =(req,res,next)=>{
     console.log("buf-------->",buf)
     const product1 = new product(buf.id,buf.name,buf.price,buf.rating,buf.description,buf.image,buf.UserId).updateById(buf.id);
     res.status(200).redirect("/shop");
-
-   
+    next();
  };
 

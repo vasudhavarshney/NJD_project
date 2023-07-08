@@ -11,30 +11,27 @@ const User = require('./Models/user.js');
 
 app= express();
 
-
-
-//pasing incoming Post request data 
+//parsing incoming Post request data 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: false}));
-
 
 //setting "static" folder as static files location
 app.use("/static",express.static(path.join(__dirname,"static")));
 
-
 //setting templating engine and views details and connecctions
 app.set("view engine","EJS");
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/views'); 
 app.set('view options', { basedir: process.env.__dirname})                              
 
-// app.use((req,res,next)=>{
-//     User.fetchUserById("649f39cd1067ce6fbb2abd63").then(User =>{
-//         console.log("user:::::::::::;;--->",User)
-//         req.user = User;
-//         next();
-//     }).catch(err =>console.log(err));
-//     next();
-// });
+//user Middelware
+app.use((req,res,next)=>{
+    User.fetchUserById('649f39cd1067ce6fbb2abd63').then(user =>{
+        //console.log("user:::::::::::;;--->",user)
+        req.user = new User(user.name,user.email,user.cart,user._id);
+        next();
+    }).catch(err =>console.log(err));
+   
+});
 
 //registering all routes
 app.use("/admin",adminRoutes);

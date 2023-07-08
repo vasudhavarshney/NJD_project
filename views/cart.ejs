@@ -8,7 +8,7 @@
     <%- include('./includes/navbar.ejs') %>
     <% if ( products.length>0 ) { %>
         <div class="cart_head">
-            <div class="cart_title">Shopping Cart </div>
+            <div class="cart_title">Shopping Cart</div>
             <div class="item_count_in_cart"><%= totalQty %> item in your cart </div>
         </div>
         <div class="cart_body">
@@ -22,7 +22,7 @@
                  </tr>
                  <% products.forEach(currentItem => { %>
                 <tr>
-                    <td><%= currentItem.details.name %></td>
+                    <td><%= currentItem.name %></td>
                     <td><%= currentItem.price %></td>
                     <td><ul class="qty_navigate">
                         <li class="plus"><%- include('./includes/add_to_cart.ejs',{product:currentItem,btnTitle:"+",qty:currentItem.qty}) %> </li>
@@ -34,7 +34,7 @@
                 </table>
             </div>
             <div class="cart_subtotal">Subtotal:<br><span id="price"><b>Rs.<%= totalPrice %>/-<b></span></div>
-            <div class="cart_checkout"><button>CheckOut</button</div></div>
+            <div class="cart_checkout"><button onClick ='location.href="/shop/makeOrder";'>CheckOut</button</div></div>
     <%} else { %>
         <div class="card">
             <div class="card-body">

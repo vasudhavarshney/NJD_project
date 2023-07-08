@@ -1,0 +1,29 @@
+<%- include('./includes/head.ejs') %>
+<link rel="stylesheet", href="static/css/navbar_style.css" />
+<link rel="stylesheet", href="static/css/shop_style.css" />
+<link rel="stylesheet", href="static/css/default_style.css" />
+<link rel="stylesheet", href="static/css/ordersStyle.css" />
+</head>
+<body>
+    <%- include('./includes/navbar.ejs') %>
+    <div class="title">Your Orders</div>
+    <div class="container">
+        <div class="total_orders">You have total <%= JSON.stringify(Orders.length) %> orders</div>
+        <div class="Order_list">
+         <% Orders.forEach(order=>{%>
+             <!-- order entities -->
+            <div class="order">
+                <div class="order_number">Order No. <%= order._id %></div><hr>
+                <div class="middel">
+                    <div class="no_of_items">Items: <%= JSON.stringify(order.items.length) %></div>
+                    <div class="Status">Order Placed</div>
+                </div>
+                <div class="order_details">
+                    <button class="odr_detail">View More</button>
+                </div>
+            </div>
+         <%})%>
+        </div>
+    </div>
+</body>
+</html>
