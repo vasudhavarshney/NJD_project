@@ -10,7 +10,7 @@ const errorController = require("../controllers/errorController.js");
 routes.use("/static",express.static(path.join(__dirname,"../static")));
 //All Routes
 routes.get("/",shopController.getShop);
-routes.get("/edit-cart",shopController.postCart);////////////need to work here 
+routes.get("/edit-cart",shopController.postCart);
 routes.get("/cart",shopController.getCart);
 routes.get("/makeOrder",shopController.postOrder)
 routes.get("/order",shopController.getOrder)

@@ -1,18 +1,16 @@
 .add_prod_form{
-    margin-left:33.33333%;
-    margin-top: 5%;
-    border: 5px solid;
+    margin-top:5px;
+    margin-left: 40%;
+    margin-right: 40%;
+    height: 3%vw;
+    /* border: 1px solid;
     border-color: chocolate;
-    border-radius: 20px;
-    padding-top: 5%;
-    padding-bottom: 8%;
-    padding-left:3%;
-    padding-right:3%;
+    border-radius: 20px; */
+    padding-top: 1%;
     width: 20%;
-    height:300px;
     box-shadow: rgb(16, 1, 1);
     flex-direction: column;
-    background-color: rgb(220, 153, 105);
+    /* background-color: rgb(220, 153, 105); */
 }
 
 .add_prod_form button{

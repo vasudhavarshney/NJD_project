@@ -13,14 +13,15 @@
             </div>
             <div class="card_body">
                 <div class="image">
-                    <img src="<%= product.image %>" alt="<%= product.name %>" >
+                    <img src="<%= product.imageUrl %>" alt="<%= product.name %>" >
                 </div>
                 <div class="details">
                     <div class="price">Price: Rs. <b><%= product.price %></b>/-</div>
                     <div class="description">Description: <%= product.description %></div>
                 </div>
-                <%- include('./includes/add_to_cart.ejs',{btnTitle:"Add to Cart",qty:1}) %>
-
+                <% if (isAuthenticated) { %>
+                    <%- include('./includes/add_to_cart.ejs',{btnTitle:"Add to Cart",qty:1}) %>
+                <% } %>
             </div>
 
         </div>

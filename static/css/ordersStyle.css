@@ -9,11 +9,11 @@ body{
 }
 
 .container{
-    margin-top:10px;
+    margin-top:5px;
     margin-left: 20%;
     margin-right: 20%;
     padding: 0.1%;
-    height: 70%vw;
+    height: 75%vw;
     background-color:chocolate;
     /* opacity: 0.1; */
     border: 1px solid chocolate;
@@ -24,9 +24,10 @@ body{
     text-align: center;
 }
 .order{
-    margin-top: 5%;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-top: 0.5%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    margin-bottom: 0.5%;
     
     padding:10px;
     height: 100px;

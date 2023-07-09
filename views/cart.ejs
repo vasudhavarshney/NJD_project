@@ -22,12 +22,12 @@
                  </tr>
                  <% products.forEach(currentItem => { %>
                 <tr>
-                    <td><%= currentItem.name %></td>
-                    <td><%= currentItem.price %></td>
+                    <td><%= currentItem.product_id.name %></td>
+                    <td><%= currentItem.product_id.price %></td>
                     <td><ul class="qty_navigate">
-                        <li class="plus"><%- include('./includes/add_to_cart.ejs',{product:currentItem,btnTitle:"+",qty:currentItem.qty}) %> </li>
+                        <li class="plus"><%- include('./includes/add_to_cart.ejs',{product:currentItem.product_id,btnTitle:"+",qty:currentItem.qty}) %> </li>
                         <li class="count"><%= currentItem.qty %></li>
-                        <li class="minus"><%- include('./includes/remove_from_cart.ejs',{product:currentItem,btnTitle:"-"}) %></li>
+                        <li class="minus"><%- include('./includes/remove_from_cart.ejs',{product:currentItem.product_id,btnTitle:"-"}) %></li>
                     </ul></td>
                  </tr>
                  <% }); %> 

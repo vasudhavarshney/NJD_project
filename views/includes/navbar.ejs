@@ -1,10 +1,23 @@
 <div class="navbar">
     <ul class="navbar-list">
         <li class="nav-list-item"><a href="/shop">Shop</a></li>
-        <li class="nav-list-item"><a href="/shop/cart">Cart</a></li>
-        <li class="nav-list-item"><a href="/shop/order">Orders</a></li>
-        <li class="nav-list-item"><a href="/admin/add_product">Add Product</a></li>
-        <li class="nav-list-item"><a href="/admin">Admin</a></li>
+        <% if (isAuthenticated) { %>
+            <li class="nav-list-item"><a href="/shop/cart">Cart</a></li>
+            <li class="nav-list-item"><a href="/shop/order">Orders</a></li>
+            <li class="nav-list-item"><a href="/admin/add_product">Add Product</a></li>
+            <li class="nav-list-item"><a href="/admin">Admin</a></li>
+        <% } %>
+    </ul>
+    <ul class="navbar-list">
+        <% if (!isAuthenticated) { %>
+            <li class="nav-list-item"><a href="/login">Login</a></li>
+        <% } else { %>
+            <li class="nav-list-item">
+                <form  action="/logout" method = "POST">
+                    <button type ="submit">Logout</button>
+                </form>
+            </li>
+        <% } %>
     </ul>
 </div>
 

@@ -1,0 +1,18 @@
+<%- include('./includes/head.ejs') %>
+<link rel="stylesheet", href="static/css/navbar_style.css">
+<link rel="stylesheet", href="static/css/add_prod_form_style.css">
+</head>
+<body>
+    <%- include('./includes/navbar.ejs') %>
+    <div class="add_prod_form">
+        <form action="/login" method ="POST">        
+            <label for="name">Name:</label>
+            <input type="text" name ="name" id ="name" value="">
+            <label for="email">Email :</label>
+            <input type="email" name ="email" id ="email" value="">
+            <label for="password">Password :</label>
+            <input type="password" name ="password" id ="password" value="">
+            <button type ="submit">Login</button>
+        </form>
+    </div>
+</body>

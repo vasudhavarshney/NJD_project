@@ -11,12 +11,14 @@
                 <div class="col">
                     <p class="name"><%= x.name %></p>
                     <div class="image">
-                        <img src="<%= x.image %>" />
+                        <img src="<%= x.imageUrl %>" />
                     </div>
                     <div class="price">Rs. <b><%= x.price %></b>/-</div><br>
                     <!-- <div class="decription"><%= x.decription %></div> -->
                     <div class="cart"><button onClick ='location.href="/product/<%= x.id %>";' class="cart">Details</button>
-                    <%- include('./includes/add_to_cart.ejs',{product:x,btnTitle:"Add to Cart",qty:1}) %>
+                    <% if (isAuthenticated) { %>
+                        <%- include('./includes/add_to_cart.ejs',{product:x,btnTitle:"Add to Cart",qty:1}) %>
+                    <% } %>
                 </div>
 
             <% }); %>

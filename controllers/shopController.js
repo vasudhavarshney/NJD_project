@@ -1,14 +1,17 @@
 const user = require('../Models/user.js');
 const product = require('../Models/product.js');
+const Order = require('../Models/order.js');
 const getDB = require('../util/database.js').getDB; 
 const productController = require("./productController.js");
 const cart = {product:[],totalPrice:0,totalQty:0}//////////////////////expand more after developing user module
 
+//working fine after adding mongoose
 module.exports.getShop=(req,res,next)=>{
-    product.fetchAll().then(product => {  
+    product.find().then(product => {  
         res.status(200).render("shop",
         {
-            "products":product
+            "products":product,
+            isAuthenticated: req.session.isLoggedIn
         }
         );
     }).catch(err =>{ console.log(err)})
@@ -17,22 +20,23 @@ module.exports.getShop=(req,res,next)=>{
 }
 
 module.exports.getCart=(req,res,next)=>{
-    req.user.getCart().then(p=>{
-    //console.log("Sending to cart view",p);
+    req.user.populate('cart.items.product_id').then(p=>{
+    console.log("here in getCart-------------------------->",p.cart.items)
     res.status(200).render("cart",
+    
     {
-        // "products":cart.product,
-        "products":p,
-        "totalPrice":p.reduce((accumulator, current) => accumulator + current.qty*current.price,0),
-        "totalQty":p.reduce((accumulator, current) => accumulator + current.qty,0)
+        "products":p.cart.items,
+        "totalPrice":p.cart.items.reduce((accumulator, current) => accumulator + current.qty*current.product_id.price,0),
+        "totalQty":p.cart.items.reduce((accumulator, current) => accumulator + current.qty,0),
+        isAuthenticated: req.session.isLoggedIn
     }
     );})
 }
+ 
 
 module.exports.postCart=(req,res,next)=>{
     const prodId =req.query.id
-    console.log("prodId in postCart;;;;;;;;;-",prodId)
-    product.fetchById(prodId).then(product=>{
+    product.findById(prodId).then(product=>{
         if(req.query.addData == "remove"){
             return req.user.deleteFromCart(product._id)
         }else{
@@ -41,6 +45,7 @@ module.exports.postCart=(req,res,next)=>{
     })
     res.redirect("back")
 }
+
 
 // module.exports.postCart1=(req,res,next)=>{
 //     const addData = req.query.addData;
@@ -103,18 +108,40 @@ module.exports.postCart=(req,res,next)=>{
 //     res.status(200).redirect("back");
 // }
 module.exports.postOrder=(req,res,next)=>{
-    req.user.addOrder().then(order=>{
-        console.log('orders--------',order)
+    console.log("Executing postOrder")
+    req.user.populate('cart.items.product_id').then(p=>{
+    const products_list = p.cart.items.map(i=>{return {product:i.product_id,qty:i.qty}})
+    console.log("In postOrder products_list------>",products_list)
+    const order =new Order({
+        user:{
+            name:req.user.username,
+            user_id:req.user
+        },
+        products:products_list
+    })
+    
+    return order.save()
+    })
+    .then(order=>{
+        console.log("In postOrder end execution")
         res.redirect("/shop/order")
     })
 
 }
 
 module.exports.getOrder=(req,res,next)=>{
-    req.user.getOrders().then(orders=>{
+    Order.find({'user.user_id':req.user._id}).then(orders=>{
+        console.log("here in get orders-------->",orders)
+        user.findById(req.user._id)//,{$set: {cart: {items:[]}}}
+        .then(i => {
+            i.cart = {items:[]}
+            i.save()
+        })
         res.render("order",{
-            "Orders":orders
+            "Orders":orders,
+            isAuthenticated: req.session.isLoggedIn
         })
     })
     
 }
+

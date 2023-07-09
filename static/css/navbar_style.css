@@ -2,16 +2,31 @@ body{
     margin: 0%;
     padding: 0%;
 }
+.navbar{
+    display: flex;
+    background-color:chocolate;
+    justify-content: space-between;
+}
 .navbar-list{
 list-style-type: none;
 margin: 0%;
 padding: 0%;
 display: flex;
-background-color:chocolate;
+
 }
+
+
 .nav-list-item{
    padding: 5px;
    margin: 5px;
+}
+.nav-list-item button{
+    font: inherit;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
 }
 
 .nav-list-item a{
@@ -22,5 +37,13 @@ background-color:chocolate;
 }
 .nav-list-item a:hover{
     padding: 5px;
+    background-color: rgb(236, 171, 125)
+}
+.nav-list-item button:hover{
+    transform-style:none;
+    transition-property: none;
+    outline-style: none;
+    padding: 2.5px;
+    position: relative;
     background-color: rgb(236, 171, 125)
 }
