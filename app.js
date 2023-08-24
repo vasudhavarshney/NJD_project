@@ -62,7 +62,7 @@ app.use("/product",productRoutes);
 app.use(errorController.get404);
 
 mongoose.connect(MONGODB_URI).then(result=>{
-    app.listen(3000,err =>{
+    app.listen(process.env.port,err =>{
                 if(err)
                     console.log(err);
                 else
