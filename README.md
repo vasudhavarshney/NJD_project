@@ -1,0 +1,1 @@
+The Ecom Shop project is a web-based application designed to facilitate online shopping experiences. Administrators manage the platform by listing various products, enabling users to browse, select, and purchase items conveniently. The platform is designed to enhance the shopping experience through a user-friendly interface and a comprehensive notification system.
